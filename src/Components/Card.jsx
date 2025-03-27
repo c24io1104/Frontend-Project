@@ -1,35 +1,50 @@
-import React from "react";
-import ColorList from "./ColorList";
-import Counter from "./ChangeNumber";
+import React, { useState } from 'react'; // Add this import
+import './card.css';
 
-const Card = ({ name, Quantity, img, stock, onAddToCart, colors }) => { // Add colors prop
+const Card = ({ product, onAddToCart }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <div className="card">
-      <img src={img} alt="" className="product-img" />
-      <div>
-        <h1>{name}</h1>
-        <h2>{Quantity}</h2>
+    <div 
+      className={`product-card ${isHovered ? 'hovered' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="product-image-container">
+        <img 
+          src={product.picture} 
+          alt={product.name} 
+          className="product-image"
+        />
+        {product.stock < 5 && (
+          <span className="low-stock">Only {product.stock} left!</span>
+        )}
       </div>
-      <div className="info">
-        Colors:
-        <ColorList colors={colors} /> {/* Now properly receiving colors */}
-        Size:
-        <Counter stock={stock} />
+
+      <div className="product-details">
+        <h3 className="product-name">{product.name}</h3>
+        
+        <div className="color-options">
+          {product.colors.map(color => (
+            <span 
+              key={color}
+              className="color-dot"
+              style={{ backgroundColor: color }}
+              title={color}
+            />
+          ))}
+        </div>
+
+        <div className="price-addtocart">
+          <span className="product-price">${product.price.toFixed(2)}</span>
+          <button 
+            onClick={() => onAddToCart(product)}
+            className="add-to-cart-btn"
+          >
+            Add to Cart
+          </button>
+        </div>
       </div>
-      <button 
-        onClick={onAddToCart} 
-        style={{ 
-          marginTop: '10px', 
-          padding: '10px', 
-          backgroundColor: '#61dafb', 
-          color: 'white', 
-          border: 'none', 
-          borderRadius: '5px', 
-          cursor: 'pointer' 
-        }}
-      >
-        Add to Cart
-      </button>
     </div>
   );
 };
