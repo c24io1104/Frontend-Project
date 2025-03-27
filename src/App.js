@@ -8,10 +8,12 @@ import Menu3 from "./Pages/Menu3";
 import Menu4 from "./Pages/Menu4";
 import ProtectedRoute from './Components/ProtectedRoute'; // Import the ProtectedRoute
 import ShoppingCart from "./Components/ShoppingCart";
+import LoginPage from "./Components/Loginpage";
+
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [cart, setCart] = useState([]);
-
+  <LoginPage />
   const toggleAuthentication = () => {
     setIsAuthenticated(!isAuthenticated);
   };
@@ -23,6 +25,7 @@ const App = () => {
   const cartCount = cart.length; // Number of items in the cart
 
   return (
+    
     <Router>
       <Header cartCount={cartCount} /> {/* Pass cartCount to Header */}
       <div className="container">
