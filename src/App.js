@@ -7,30 +7,10 @@ import ShoppingCart from "./Components/ShoppingCart";
 import LoginPage from "./Loginpage";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('isAuthenticated') === 'true';
+  });
   const [cart, setCart] = useState([]);
-
-  const handleLogin = async (username, password) => {
-    try {
-      const response = await fetch('http://localhost:3000/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
-      });
-      
-      const result = await response.text();
-      if (result.includes("Success")) {
-        setIsAuthenticated(true);
-        return true;
-      }
-      return false;
-    } catch (error) {
-      console.error("Login error:", error);
-      return false;
-    }
-  };
 
   const addToCart = (product) => {
     setCart([...cart, product]);
@@ -43,7 +23,7 @@ const App = () => {
         <Routes>
           <Route path="/login" element={
             isAuthenticated ? <Navigate to="/" /> : 
-            <LoginPage onLogin={handleLogin} />
+            <LoginPage setIsAuthenticated={setIsAuthenticated} />
           } />
           
           <Route path="/" element={
