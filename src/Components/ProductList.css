@@ -1,12 +1,4 @@
-/* Main layout */
-.product-page-container {
-    display: flex;
-    min-height: 100vh;
-    padding: 20px;
-    max-width: 1400px;
-    margin: 0 auto;
-    gap: 30px;
-  }
+
   
   /* Filters sidebar */
   .filters-sidebar {
@@ -16,10 +8,18 @@
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     height: fit-content;
-    position: sticky;
-    top: 20px;
+    position: relative; /* Changed from absolute */
+    align-self: flex-start; /* Prevents stretching */
+    left:0px;
   }
-  
+
+
+/* Force grid layout */
+@supports (display: grid) {
+  .products-grid {
+    display: grid !important;
+  }
+}
   .filter-section {
     margin-bottom: 20px;
   }
@@ -83,21 +83,39 @@
   }
   
   /* Products grid */
+ /* Main layout */
+/* Main container */
+.product-page-container {
+    display: flex;
+    min-width: 100%; /* Force full width */
+    width: 100vw; /* Viewport width */
+    padding: 20px;
+    top: 200px;
+    position:absolute;
+    box-sizing: border-box; /* Include padding in width */
+  }
+  
+  /* Products grid container */
   .products-grid-container {
     flex: 1;
+    min-width: 0; /* Allows shrinking past content */
+    overflow: hidden; /* Contains children */
   }
   
-  .products-header {
-    color: #2c3e50;
-    margin-bottom: 20px;
-  }
-  
+  /* Grid definition - THIS IS CRUCIAL */
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
+    width: 100%;
+    grid-auto-flow: dense; /* Better item packing */
   }
   
+  /* Card container */
+  .product-card {
+    min-width: 0; /* Allows proper shrinking */
+    break-inside: avoid; /* Prevents column breaks */
+  }
   .no-products {
     text-align: center;
     padding: 50px;

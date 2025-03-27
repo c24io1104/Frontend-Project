@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
+import ProductDetails from './ProductDetails';
 import productsData from './data.json';
 import './ProductList.css';
 
 const ProductList = ({ onAddToCart }) => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [products, setProducts] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
@@ -38,11 +40,10 @@ const ProductList = ({ onAddToCart }) => {
 
   return (
     <div className="product-page-container">
-      {/* Filters Sidebar - Left Side */}
+      {/* Filters Sidebar */}
       <div className="filters-sidebar">
         <h3>Filters</h3>
         
-        {/* Search Bar */}
         <div className="filter-section">
           <input
             type="text"
@@ -53,7 +54,6 @@ const ProductList = ({ onAddToCart }) => {
           />
         </div>
 
-        {/* Color Filter */}
         <div className="filter-section">
           <button
             onClick={() => setShowColorFilters(!showColorFilters)}
@@ -79,7 +79,6 @@ const ProductList = ({ onAddToCart }) => {
           )}
         </div>
 
-        {/* Price Range */}
         <div className="filter-section">
           <h4>Price Range</h4>
           <div className="price-range-inputs">
@@ -103,7 +102,6 @@ const ProductList = ({ onAddToCart }) => {
           </div>
         </div>
 
-        {/* Clear Filters */}
         <button
           onClick={() => {
             setSelectedColors([]);
@@ -116,7 +114,7 @@ const ProductList = ({ onAddToCart }) => {
         </button>
       </div>
 
-      {/* Products Grid - Right Side */}
+      {/* Products Grid */}
       <div className="products-grid-container">
         <h2 className="products-header">Our Products ({filteredProducts.length})</h2>
         
@@ -141,11 +139,21 @@ const ProductList = ({ onAddToCart }) => {
                 key={product.id}
                 product={product}
                 onAddToCart={onAddToCart}
+                onShowDetails={setSelectedProduct}
               />
             ))}
           </div>
         )}
       </div>
+
+      {/* Product Details Modal */}
+      {selectedProduct && (
+        <ProductDetails
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+          onAddToCart={onAddToCart}
+        />
+      )}
     </div>
   );
 };

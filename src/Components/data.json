@@ -6,7 +6,7 @@
         "price": 19.99,
         "stock": 5,
         "colors": ["red", "blue", "green"],
-        "picture": "/product1.png"
+        "picture": "https://media.istockphoto.com/id/1350560575/photo/pair-of-blue-running-sneakers-on-white-background-isolated.jpg?s=612x612&w=0&k=20&c=A3w_a9q3Gz-tWkQL6K00xu7UHdN5LLZefzPDp-wNkSU="
       },
       {
         "id": 2,
@@ -14,7 +14,7 @@
         "price": 24.99,
         "stock": 5,
         "colors": ["yellow", "purple", "white"],
-        "picture": "/product2.png"
+        "picture": "https://images.pexels.com/photos/267301/pexels-photo-267301.jpeg?cs=srgb&dl=pexels-pixabay-267301.jpg&fm=jpg"
       },
       {
         "id": 3,
@@ -22,7 +22,7 @@
         "price": 29.99,
         "stock": 5,
         "colors": ["black", "pink", "orange"],
-        "picture": "/product3.png"
+        "picture": "https://5.imimg.com/data5/SELLER/Default/2023/7/323356025/UR/EQ/WS/192140499/safeimagekit-resized-img-3--500x500.png"
       },
       {
         "id": 4,
@@ -30,7 +30,7 @@
         "price": 15.99,
         "stock": 5,
         "colors": ["brown", "gray", "teal"],
-        "picture": "/product4.png"
+        "picture": "https://static.nike.com/a/images/t_PDP_936_v1/f_auto,q_auto:eco/450ed1df-8e17-4d87-a244-85697874661c/NIKE+REVOLUTION+7.png"
       },
       {
         "id": 5,
@@ -38,7 +38,7 @@
         "price": 39.99,
         "stock": 5,
         "colors": ["cyan", "magenta", "lime", "indigo"],
-        "picture": "/product5.png"
+        "picture": "https://images.pexels.com/photos/292999/pexels-photo-292999.jpeg?cs=srgb&dl=pexels-goumbik-292999.jpg&fm=jpg"
       },
       {
         "id": 6,
@@ -46,7 +46,7 @@
         "price": 29.99,
         "stock": 4,
         "colors": ["black", "white"],
-        "picture": "/product6.png"
+        "picture": "https://marvel-b1-cdn.bc0a.com/f00000000114841/www.florsheim.com/shop/index/SS25-FL-R1-MainLaunch-Desktop.jpg"
       }
     ]
   }
